@@ -1,11 +1,22 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { signIn, getCsrfToken } from 'next-auth/react'
+import { signIn, getCsrfToken, getSession } from 'next-auth/react'
 import { Formik, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 export async function getServerSideProps(context) {
+    const session = await getSession(context)
+
+    if (session !== null) {
+        return {
+            redirect: {
+                destination: '/welcome',
+                permanent: false,
+            },
+        }
+    }
+
     return {
         props: {
             csrfToken: await getCsrfToken(context),
@@ -16,14 +27,30 @@ export async function getServerSideProps(context) {
 const validationSchema = Yup.object({
     email: Yup.string()
         .max(30, 'Debe tener 30 caracteres o menos')
-        .email('Respuesta de nombre de usuario inválido')
+        .email('Introduzca una dirección de correo electrónico válida')
         .required('Por favor ingresa tu nombre de usuario'),
     password: Yup.string().required('Por favor ingresa tu contraseña'),
 })
 
+export const ErrorMessages = ({ errors }) => {
+    if (typeof errors === 'string') {
+        return <div className="text-red-400 text-xs text-center rounded p-2 mb-3">Datos incorrectos. {errors}</div>
+    }
+
+    if (errors) {
+        return Object.entries(errors).map(([_, values]) => {
+            return (
+                <div className="text-red-400 text-xs text-center rounded p-2 mb-3">Datos incorrectos. {values[0]}</div>
+            )
+        })
+    }
+
+    return <div className="p-2 mb-3" />
+}
+
 export default function Login({ csrfToken }) {
     const router = useRouter()
-    const [error, setError] = useState(null)
+    const [errors, setErrors] = useState(null)
 
     const handleSubmit = async (values, { setSubmitting }) => {
         const response = await signIn('credentials', {
@@ -33,11 +60,16 @@ export default function Login({ csrfToken }) {
             imei: values.imei,
             callbackUrl: `${window.location.origin}/welcome`,
         })
-        console.log(response)
+
         if (response?.error) {
-            setError(response.error)
+            try {
+                const errors = JSON.parse(response.error)
+                setErrors(errors)
+            } catch (error) {
+                setErrors(response.error)
+            }
         } else {
-            setError(null)
+            setErrors(null)
         }
 
         if (response.url) {
@@ -58,55 +90,71 @@ export default function Login({ csrfToken }) {
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}>
                     {(formik) => (
-                        <form onSubmit={formik.handleSubmit}>
-                            <div className="bg-red-400 flex flex-col items-center justify-center min-h-screen py-2 shadow-lg">
-                                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                                    <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
-                                    <div className="text-red-400 text-md text-center rounded p-2">{error}</div>
-                                    <div className="mb-4">
-                                        <label htmlFor="email" className="uppercase text-sm text-gray-600 font-bold">
-                                            Usuario
-                                            <Field
-                                                name="email"
-                                                aria-label="Introduce tu nombre de usuario"
-                                                aria-required="true"
-                                                type="text"
-                                                className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                            />
-                                        </label>
-
-                                        <div className="text-red-600 text-sm">
-                                            <ErrorMessage name="email" />
+                        <>
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className="bg-red-parrot-500 flex flex-col items-center justify-center min-h-screen shadow-lg h-max py-2">
+                                    <div className="bg-white shadow-md rounded px-16 py-24 mb-4 max-w-sm">
+                                        <div className="logo mb-12 bg-white w-auto">
+                                            <img src="/parrot.svg" alt="Parrot connet" />
+                                            <p className="text-xs text-slate-900 px-0">
+                                                El software para los restaurantes de hoy
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div className="mb-6">
-                                        <label htmlFor="password" className="uppercase text-sm text-gray-600 font-bold">
-                                            Contraseña
-                                            <Field
-                                                name="password"
-                                                aria-label="Introduce tu contraseña"
-                                                aria-required="true"
-                                                type="password"
-                                                className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                            />
-                                        </label>
 
-                                        <div className="text-red-600 text-sm">
-                                            <ErrorMessage name="password" />
+                                        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
+                                        <div className="w-xs max-w-xs">
+                                            <ErrorMessages errors={errors} />
                                         </div>
-                                    </div>
 
-                                    <div className="flex items-center justify-center">
-                                        <button
-                                            type="submit"
-                                            className="uppercase text-sm font-bold tracking-wide bg-green-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150">
-                                            {formik.isSubmitting ? 'Por favor espere...' : 'Iniciar sesión'}
-                                        </button>
+                                        <div className="mb-4">
+                                            <label
+                                                htmlFor="email"
+                                                className="uppercase text-sm text-gray-600 font-bold">
+                                                Usuario
+                                                <Field
+                                                    name="email"
+                                                    aria-label="Introduce tu nombre de usuario"
+                                                    aria-required="true"
+                                                    type="text"
+                                                    className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                                                />
+                                            </label>
+
+                                            <div className="text-red-600 text-xs">
+                                                <ErrorMessage name="email" />
+                                            </div>
+                                        </div>
+                                        <div className="mb-6">
+                                            <label
+                                                htmlFor="password"
+                                                className="uppercase text-sm text-gray-600 font-bold">
+                                                Contraseña
+                                                <Field
+                                                    name="password"
+                                                    aria-label="Introduce tu contraseña"
+                                                    aria-required="true"
+                                                    type="password"
+                                                    className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                                                />
+                                            </label>
+
+                                            <div className="text-red-600 text-xs">
+                                                <ErrorMessage name="password" />
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center justify-center">
+                                            <button
+                                                type="submit"
+                                                className="uppercase text-sm font-bold tracking-wide bg-slate-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150">
+                                                {formik.isSubmitting ? 'Por favor espere...' : 'Iniciar sesión'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </>
                     )}
                 </Formik>
             </main>

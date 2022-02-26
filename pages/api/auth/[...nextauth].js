@@ -23,9 +23,7 @@ const providers = [
                 }
                 const response = await axios.post(API_URL, payload, options)
 
-                console.log('response::', response)
-
-                if (!response) {
+                if (response.status !== 200) {
                     throw new Error('Invalid user and password!')
                 }
 
@@ -37,9 +35,12 @@ const providers = [
                 // Return null if user data could not be retrived
                 return null
             } catch (error) {
-                const errorMessage = error.message
+                if (error.response.status >= 400) {
+                    throw new Error(JSON.stringify(error.response.data))
+                }
+
                 // Redirecting to the login page with error messsage in the URL
-                throw new Error(errorMessage)
+                throw new Error(error.message)
             }
         },
     }),
