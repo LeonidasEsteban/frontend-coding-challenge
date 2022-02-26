@@ -62,7 +62,7 @@ export default function Login({ csrfToken }) {
             email: values.email,
             password: values.password,
             imei: values.imei,
-            callbackUrl: `${window.location.origin}/welcome`,
+            callbackUrl: `${window.location.origin}/${process.env.NEXT_PUBLIC_REDIRECT_TO}`,
         })
 
         if (response?.error) {
@@ -86,13 +86,14 @@ export default function Login({ csrfToken }) {
     return (
         <div className="login">
             <Head>
-                <title>App | Login</title>
+                <title>Login</title>
             </Head>
             <main className="main">
                 <Formik
                     initialValues={{ email: 'desarrollo@kimetrics.com', password: 'KiDdjEe40', imei: 'kimetrics-web' }}
                     validationSchema={validationSchema}
-                    onSubmit={handleSubmit}>
+                    onSubmit={handleSubmit}
+                >
                     {(formik) => (
                         <>
                             <form onSubmit={formik.handleSubmit}>
@@ -116,7 +117,8 @@ export default function Login({ csrfToken }) {
                                         <div className="mb-4">
                                             <label
                                                 htmlFor="email"
-                                                className="uppercase text-sm text-gray-600 font-bold">
+                                                className="uppercase text-sm text-gray-600 font-bold"
+                                            >
                                                 Usuario
                                                 <Field
                                                     name="email"
@@ -134,7 +136,8 @@ export default function Login({ csrfToken }) {
                                         <div className="mb-6">
                                             <label
                                                 htmlFor="password"
-                                                className="uppercase text-sm text-gray-600 font-bold">
+                                                className="uppercase text-sm text-gray-600 font-bold"
+                                            >
                                                 Contraseña
                                                 <Field
                                                     name="password"
@@ -153,7 +156,8 @@ export default function Login({ csrfToken }) {
                                         <div className="flex items-center justify-center">
                                             <button
                                                 type="submit"
-                                                className="uppercase text-sm font-bold tracking-wide bg-slate-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150">
+                                                className="uppercase text-sm font-bold tracking-wide bg-slate-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150"
+                                            >
                                                 {formik.isSubmitting ? 'Por favor espere...' : 'Iniciar sesión'}
                                             </button>
                                         </div>

@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { getSession, useSession, signOut } from 'next-auth/react'
 
 export const getServerSideProps = async (context) => {
@@ -26,7 +27,10 @@ export default function Welcome() {
 
     return (
         <div className="container">
-            <div>
+            <Head>
+                <title>Welcome</title>
+            </Head>
+            <main>
                 <h3>Welcome</h3>
                 <div>user: {session.user.email}</div>
                 <div>status: {status}</div>
@@ -35,10 +39,11 @@ export default function Welcome() {
                         signOut({
                             callbackUrl: 'login',
                         })
-                    }>
+                    }
+                >
                     Log Out
                 </button>
-            </div>
+            </main>
         </div>
     )
 }

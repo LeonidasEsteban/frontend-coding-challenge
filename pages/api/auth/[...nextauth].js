@@ -65,7 +65,7 @@ const options = {
     site: process.env.NEXTAUTH_URL,
     session: {
         jwt: false,
-        maxAge: 60 * 15, // 15 min
+        maxAge: 60 * 30, // 15 min
     },
     jwt: {
         secret: AUTH_JWT_SECRET,
@@ -77,4 +77,6 @@ const options = {
     },
 }
 
-export default (req, res) => NextAuth(req, res, options)
+const AuthApi = (req, res) => NextAuth(req, res, options)
+
+export default AuthApi

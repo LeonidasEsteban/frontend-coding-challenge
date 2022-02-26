@@ -7,6 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
+        "prettier": "prettier --write 'pages/**/*.{js,jsx}'",
         "lint:fix": "eslint pages/ --fix"
     },
     "dependencies": {
@@ -29,5 +30,8 @@
         "postcss": "^8.4.7",
         "prettier": "^2.5.1",
         "tailwindcss": "^3.0.23"
+    },
+    "resolutions": {
+        "eslint-plugin-react": "7.28.0"
     }
 }
