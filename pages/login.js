@@ -17,9 +17,11 @@ export async function getServerSideProps(context) {
         }
     }
 
+    const csrfToken = await getCsrfToken(context)
+
     return {
         props: {
-            csrfToken: await getCsrfToken(context),
+            csrfToken: csrfToken || null,
         },
     }
 }
@@ -40,7 +42,9 @@ export const ErrorMessages = ({ errors }) => {
     if (errors) {
         return Object.entries(errors).map(([_, values]) => {
             return (
-                <div className="text-red-400 text-xs text-center rounded p-2 mb-3">Datos incorrectos. {values[0]}</div>
+                <div key={_} className="text-red-400 text-xs text-center rounded p-2 mb-3">
+                    Datos incorrectos. {values[0]}
+                </div>
             )
         })
     }
@@ -100,6 +104,8 @@ export default function Login({ csrfToken }) {
                                                 El software para los restaurantes de hoy
                                             </p>
                                         </div>
+
+                                        <div className="text-center text-2xl text-slate-900">Iniciar Sesión</div>
 
                                         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 

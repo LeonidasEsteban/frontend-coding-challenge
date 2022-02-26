@@ -21,7 +21,7 @@ export default function Welcome() {
     const { data: session, status } = useSession()
 
     if (session === null) {
-        return <div>Acceso denegado</div>
+        return <div>Acceso denegado, status: {status}</div>
     }
 
     return (
@@ -33,7 +33,7 @@ export default function Welcome() {
                 <button
                     onClick={() =>
                         signOut({
-                            callbackUrl: 'http://localhost:3000/login',
+                            callbackUrl: 'login',
                         })
                     }>
                     Log Out

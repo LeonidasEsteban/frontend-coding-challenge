@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { getSession, useSession, signOut } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)
@@ -22,7 +22,7 @@ export default function Home() {
     const { data: session, status } = useSession()
 
     if (session === null) {
-        return <div>Acceso denegado</div>
+        return <div>Acceso denegado, status:{status}</div>
     }
 
     return (

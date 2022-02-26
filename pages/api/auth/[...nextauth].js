@@ -1,46 +1,45 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import axios from 'axios'
+import got from 'got'
 
-const BASE_URL = 'https://lamoderna.kimetrics.com'
+const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL
 const AUTH_JWT_SECRET = process.env.AUTH_JWT_SECRET
+const ENDPOINT = `api/v1/login/`
+
 const providers = [
     CredentialsProvider({
         name: 'Credentials',
         authorize: async (credentials) => {
             try {
-                const API_URL = `${BASE_URL}/api/v1/login/`
                 const payload = {
                     password: credentials.password,
                     email: credentials.email,
                     imei: credentials.imei,
                 }
-                const options = {
-                    headers: {
-                        accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                }
-                const response = await axios.post(API_URL, payload, options)
 
-                if (response.status !== 200) {
-                    throw new Error('Invalid user and password!')
+                const options = {
+                    prefixUrl: AUTH_SERVICE_URL,
+                    json: payload,
+                    responseType: 'json',
+                }
+
+                const response = await got.post(ENDPOINT, options)
+
+                if (!response) {
+                    throw new Error('Usuario y contraseña inválidos')
                 }
 
                 // If not error and we have user data, return it
-                if (response.data) {
-                    return response
+                if (response.body) {
+                    return { data: response.body }
                 }
 
                 // Return null if user data could not be retrived
                 return null
             } catch (error) {
-                if (error.response.status >= 400) {
-                    throw new Error(JSON.stringify(error.response.data))
-                }
-
+                console.log('error::', error.message)
                 // Redirecting to the login page with error messsage in the URL
-                throw new Error(error.message)
+                throw new Error('Usuario y contraseña inválidos')
             }
         },
     }),
@@ -63,6 +62,7 @@ const callbacks = {
 
 const options = {
     debug: process.env.NODE_ENV === 'development',
+    site: process.env.NEXTAUTH_URL,
     session: {
         jwt: false,
         maxAge: 60 * 15, // 15 min
