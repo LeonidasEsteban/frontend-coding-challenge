@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { getSession, useSession, signOut } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
+import Dashboard from '@/components/Dashboard'
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)
@@ -7,7 +8,7 @@ export const getServerSideProps = async (context) => {
     if (session == null) {
         return {
             redirect: {
-                destination: '/login',
+                destination: process.env.NEXT_PUBLIC_LOGIN_PATH,
                 permanent: false,
             },
         }
@@ -28,21 +29,10 @@ export default function Welcome() {
     return (
         <div className="container">
             <Head>
-                <title>Welcome</title>
+                <title>Dashboard</title>
             </Head>
             <main>
-                <h3>Welcome</h3>
-                <div>user: {session.user.email}</div>
-                <div>status: {status}</div>
-                <button
-                    onClick={() =>
-                        signOut({
-                            callbackUrl: 'login',
-                        })
-                    }
-                >
-                    Log Out
-                </button>
+                <Dashboard session={session} />
             </main>
         </div>
     )

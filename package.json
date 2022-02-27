@@ -1,7 +1,11 @@
 {
     "name": "next-auth-tutorial",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
+    "author": {
+        "email": "daniel.perez.atanacio@gmail.com",
+        "name": "Daniel P. Atanacio"
+    },
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -11,6 +15,7 @@
         "lint:fix": "eslint pages/ --fix"
     },
     "dependencies": {
+        "antd": "^4.18.8",
         "axios": "^0.26.0",
         "formik": "^2.2.9",
         "got": "^12.0.1",
@@ -18,6 +23,10 @@
         "next-auth": "^4.2.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
+        "react-redux": "^7.2.6",
+        "redux": "^4.1.2",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-thunk": "^2.4.1",
         "yup": "^0.32.11"
     },
     "devDependencies": {

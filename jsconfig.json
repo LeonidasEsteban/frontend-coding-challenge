@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/redux/*": ["redux/*"],
+            "@/components/*": ["components/*"]
+        }
+    },
+    "include": [],
+    "exclude": ["node_modules"],
+    "checkJs": true
+}
