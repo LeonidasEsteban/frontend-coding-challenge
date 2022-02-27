@@ -1,11 +1,10 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { Avatar, Button, Dropdown, Menu } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { Avatar, Dropdown, Menu } from 'antd'
+import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import { signOut } from 'next-auth/react'
 
-const AuthUser = ({ session }) => {
-    const { user } = session
+const UserItem = ({ stores }) => {
+    const { data, ui } = stores
 
     const handleClick = () => {
         signOut({
@@ -13,12 +12,14 @@ const AuthUser = ({ session }) => {
         })
     }
 
+    if (ui.loading) {
+        return <LoadingOutlined />
+    }
+
     const menu = (
         <Menu>
             <Menu.Item key="user">
-                <div className="text-sm text-slate-900">
-                    {user.first_name} ({user.email})
-                </div>
+                <div className="text-sm text-slate-900">{data.username}</div>
             </Menu.Item>
             <Menu.Item key="close" danger onClick={handleClick}>
                 <div className="text-xs">Cerrar sesión</div>
@@ -28,18 +29,18 @@ const AuthUser = ({ session }) => {
 
     return (
         <Dropdown overlay={menu} trigger="click">
-            <Button className="ant-dropdown-link text-white hover:text-yellow-50" type="link">
+            <a className="ant-dropdown-link text-white hover:text-yellow-50" type="link">
                 <span className="flex items-center">
                     <Avatar src={<img src="https://joeschmoe.io/api/v1/random" className="w-2" />} />
                     <DownOutlined />
                 </span>
-            </Button>
+            </a>
         </Dropdown>
     )
 }
 
-AuthUser.propTypes = {
+UserItem.propTypes = {
     session: PropTypes.object,
 }
 
-export default AuthUser
+export default UserItem

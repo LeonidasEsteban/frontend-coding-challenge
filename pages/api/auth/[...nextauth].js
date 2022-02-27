@@ -4,7 +4,7 @@ import got from 'got'
 
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL
 const AUTH_JWT_SECRET = process.env.AUTH_JWT_SECRET
-const ENDPOINT = `api/v1/login/`
+const ENDPOINT = `api/auth/token`
 
 const providers = [
     CredentialsProvider({
@@ -13,8 +13,7 @@ const providers = [
             try {
                 const payload = {
                     password: credentials.password,
-                    email: credentials.email,
-                    imei: credentials.imei,
+                    username: credentials.username,
                 }
 
                 const options = {
@@ -65,7 +64,7 @@ const options = {
     site: process.env.NEXTAUTH_URL,
     session: {
         jwt: false,
-        maxAge: 60 * 30, // 15 min
+        maxAge: 60 * 30, // 30 min
     },
     jwt: {
         secret: AUTH_JWT_SECRET,

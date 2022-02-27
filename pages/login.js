@@ -27,8 +27,8 @@ export async function getServerSideProps(context) {
 }
 
 const validationSchema = Yup.object({
-    email: Yup.string()
-        .max(30, 'Debe tener 30 caracteres o menos')
+    username: Yup.string()
+        .max(50, 'Debe tener 30 caracteres o menos')
         .email('Introduzca una dirección de correo electrónico válida')
         .required('Por favor ingresa tu nombre de usuario'),
     password: Yup.string().required('Por favor ingresa tu contraseña'),
@@ -59,9 +59,8 @@ export default function Login({ csrfToken }) {
     const handleSubmit = async (values) => {
         const response = await signIn('credentials', {
             redirect: false,
-            email: values.email,
+            username: values.username,
             password: values.password,
-            imei: values.imei,
             callbackUrl: `${window.location.origin}/dashboard`,
         })
 
@@ -83,7 +82,10 @@ export default function Login({ csrfToken }) {
             </Head>
             <main className="main">
                 <Formik
-                    initialValues={{ email: 'desarrollo@kimetrics.com', password: 'KiDdjEe40', imei: 'kimetrics-web' }}
+                    initialValues={{
+                        username: 'android-challenge@parrotsoftware.io',
+                        password: '8mngDhoPcB3ckV7X',
+                    }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                 >
@@ -110,12 +112,12 @@ export default function Login({ csrfToken }) {
 
                                             <div className="mb-4">
                                                 <label
-                                                    htmlFor="email"
+                                                    htmlFor="username"
                                                     className="uppercase text-sm text-gray-600 font-bold"
                                                 >
                                                     Usuario
                                                     <Field
-                                                        name="email"
+                                                        name="username"
                                                         aria-label="Introduce tu nombre de usuario"
                                                         aria-required="true"
                                                         type="text"
@@ -124,7 +126,7 @@ export default function Login({ csrfToken }) {
                                                 </label>
 
                                                 <div className="text-red-600 text-xs">
-                                                    <ErrorMessage name="email" />
+                                                    <ErrorMessage name="username" />
                                                 </div>
                                             </div>
                                             <div className="mb-6">

@@ -2,8 +2,8 @@ import { Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { testAction } from '../redux/actions/actions'
 
-const Dashboard = ({ session }) => {
-    const state = useSelector((state) => state.test)
+const Dashboard = () => {
+    const auth = useSelector((state) => state.auth)
     const dispatch = useDispatch()
 
     const handleClick = () => {
@@ -12,8 +12,8 @@ const Dashboard = ({ session }) => {
 
     return (
         <div className="dashboard">
-            <h1>Productos</h1>
-            <div>Message: {state.message}</div>
+            <h1>Dashboard</h1>
+            <div>Access: {auth.access}</div>
             <Button type="primary" onClick={handleClick}>
                 Test
             </Button>
