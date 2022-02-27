@@ -6,6 +6,7 @@ import { useQuery } from 'react-query'
 import { stringify } from 'query-string'
 import ProductListItem from './ProductListItem'
 import CategoryName from './CategoryName'
+import Loader from './Loader'
 
 export const processResults = (results) => {
     const fn = R.groupBy((product) => {
@@ -45,7 +46,7 @@ const ProductsList = ({ user, selectedStore }) => {
     })
 
     if (status === 'loading') {
-        return 'Cargando...'
+        return <Loader />
     }
 
     return (

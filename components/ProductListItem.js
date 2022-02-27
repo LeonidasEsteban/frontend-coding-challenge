@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types'
 import Image from 'next/image'
-import { Switch } from 'antd'
+import { Switch, Tooltip } from 'antd'
 
 const ProductListItem = ({ product }) => {
-    console.log(product)
-
+    const isAvailable = product.availability === 'AVAILABLE'
     return (
         <div className="product-item">
             <div className="flex w-full justify-between gap-3">
@@ -19,10 +18,12 @@ const ProductListItem = ({ product }) => {
                     </div>
                 </div>
                 <div className="availability">
-                    <Switch
-                        className={product.availability === 'AVAILABLE' ? 'bg-red-parrot-500' : 'bg-gray-400'}
-                        defaultChecked={product.availability === 'AVAILABLE'}
-                    />
+                    <Tooltip title="Producto disponible">
+                        <Switch
+                            className={isAvailable ? 'bg-red-parrot-500' : 'bg-gray-400'}
+                            defaultChecked={isAvailable}
+                        />
+                    </Tooltip>
                 </div>
             </div>
         </div>

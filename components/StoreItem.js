@@ -22,12 +22,7 @@ const StoreItem = ({ stores: { data, ui } }) => {
 
     return (
         <div className="text-white">
-            <Select
-                placeholder="Selecciona una tienda"
-                loading={ui.loading}
-                defaultValue={selectedStore}
-                onSelect={handleSelect}
-            >
+            <Select placeholder="Seleccionar" loading={ui.loading} defaultValue={selectedStore} onSelect={handleSelect}>
                 {stores.length > 0 &&
                     stores.map((store) => {
                         return (

@@ -15,9 +15,9 @@ const store = configureStore()
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: true,
             refetchOnmount: false,
-            refetchOnReconnect: false,
+            refetchOnReconnect: true,
             retry: false,
             staleTime: 0, // 5 * 60 * 1000
         },
