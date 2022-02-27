@@ -64,7 +64,7 @@ const ProductsList = ({ user, selectedStore }) => {
                             header={<CategoryName name={category} count={categories[category].length} />}
                         >
                             {categories[category].map((product) => (
-                                <div key={product.uuid} className="mb-2">
+                                <div key={product.uuid} className="mb-5">
                                     <ProductListItem product={product} />
                                 </div>
                             ))}

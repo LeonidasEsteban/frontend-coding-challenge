@@ -5,9 +5,9 @@ import configureStore from '@/redux/store/configureStore'
 import AppLayout from '@/components/AppLayout'
 
 import 'antd/dist/antd.css'
+import '../styles/tailwind.css'
 
 import '../styles/globals.css'
-import '../styles/tailwind.css'
 import '../styles/antd.theme.css'
 
 const store = configureStore()
