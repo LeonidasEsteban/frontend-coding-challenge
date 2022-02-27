@@ -1,7 +1,8 @@
-<h1 align="center">Frontend Coding Challenge Parrot Connect</h1>
+# Frontend Coding Challenge Parrot Connect
+
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 
-> Consulta de productos por categoría con login - [frontend-coding-challenge.vercel.app](https://frontend-coding-challenge.vercel.app)
+> App para consulta de productos por categoría protegido por usuario y contraseña
 
 ### Guía rápida
 
