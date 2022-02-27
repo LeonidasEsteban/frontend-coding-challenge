@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { SessionProvider } from 'next-auth/react'
 import { Provider } from 'react-redux'
 import configureStore from '@/redux/store/configureStore'
-import AppLayout from '@/components/AppLayout'
+import AppLayout from '@/containers/AppLayout'
 
 import 'antd/dist/antd.css'
 import 'simplebar/src/simplebar.css'
@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
     },
 })
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function App({ Component, pageProps: { session, ...pageProps } }) {
     if (session) {
         return (
             <SessionProvider session={session}>
@@ -47,4 +47,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     )
 }
 
-export default MyApp
+export default App

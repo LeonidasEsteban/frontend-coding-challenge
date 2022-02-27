@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { getSession, useSession } from 'next-auth/react'
-import Dashboard from '@/components/Dashboard'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setAuthData } from '../redux/actions/actions'
+import Head from 'next/head'
+import { getSession, useSession } from 'next-auth/react'
+import { setAuthData } from '@/redux/actions/App'
+import Dashboard from '@/containers/Dashboard'
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)
@@ -26,13 +26,13 @@ export default function Welcome() {
     const { data: session, status } = useSession()
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(setAuthData(session.user))
+    }, [session, dispatch])
+
     if (session === null) {
         return <div>Acceso denegado, status: {status}</div>
     }
-
-    useEffect(() => {
-        dispatch(setAuthData(session.user))
-    }, [session])
 
     return (
         <>

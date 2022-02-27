@@ -11,8 +11,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "prettier": "prettier --write 'pages/**/*.{js,jsx}'",
-        "lint:fix": "eslint pages/ --fix"
+        "prettier": "prettier --write 'src/**/*.{js,jsx}'",
+        "lint:fix": "eslint src/ --fix"
     },
     "dependencies": {
         "antd": "^4.18.8",

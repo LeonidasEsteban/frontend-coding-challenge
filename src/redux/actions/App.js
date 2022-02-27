@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { APP, STORES } from '../types'
-
-const SERVICE_URL = process.env.NEXT_PUBLIC_SERVICE_URL
-const ENDPOINT = 'api/v1/users/me'
+import { APP, STORES } from '../CONSTANTS'
+import endpoints from '@/config/endpoints'
 
 export const setAuthData = (data) => (dispatch) => {
     dispatch({
@@ -24,7 +22,7 @@ export const getMyStores = () => async (dispatch, getState) => {
     try {
         dispatch({ type: STORES.FETCH_START })
 
-        const { data } = await axios.get(`${SERVICE_URL}/${ENDPOINT}`, {
+        const { data } = await axios.get(endpoints.stores.myStores, {
             headers: {
                 authorization: 'Bearer ' + access,
             },

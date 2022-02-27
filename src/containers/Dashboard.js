@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { get } from 'lodash'
 import { Empty } from 'antd'
 
-import ProductsList from './ProductsList'
+import ProductsList from '@/components/ProductsList'
 
 const Dashboard = ({ session }) => {
     const selectedStore = useSelector((state) => get(state, 'selectedStore.data', null))
@@ -10,7 +10,7 @@ const Dashboard = ({ session }) => {
     if (!selectedStore) {
         return (
             <div className="h-full grid place-content-center">
-                <Empty description="Seleccione una tienda por favor" />
+                <Empty description="No hay datos que mostrar, selecciona una tienda." />
             </div>
         )
     }

@@ -29,18 +29,18 @@ const UserItem = ({ stores }) => {
 
     return (
         <Dropdown overlay={menu} trigger="click">
-            <a className="ant-dropdown-link text-white hover:text-yellow-50" type="link">
-                <span className="flex items-center">
-                    <Avatar src={<img src="https://joeschmoe.io/api/v1/random" className="w-2" />} />
+            <div className="ant-dropdown-link text-white hover:text-yellow-50 cursor-pointer" type="link">
+                <span className="flex items-center gap-1">
+                    <Avatar src={<img src="https://joeschmoe.io/api/v1/random" className="w-2" alt="avatar" />} />
                     <DownOutlined />
                 </span>
-            </a>
+            </div>
         </Dropdown>
     )
 }
 
 UserItem.propTypes = {
-    session: PropTypes.object,
+    stores: PropTypes.object,
 }
 
 export default UserItem

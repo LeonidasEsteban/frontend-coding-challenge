@@ -1,4 +1,4 @@
-import { APP } from '../types'
+import { APP } from '../CONSTANTS'
 
 const INITIAL_STATE = {
     ui: {

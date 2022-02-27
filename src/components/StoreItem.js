@@ -3,7 +3,7 @@ import { Select } from 'antd'
 import { get } from 'lodash'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedStore } from '@/redux/actions/actions'
+import { setSelectedStore } from '@/redux/actions/App'
 
 const { Option } = Select
 

@@ -20,7 +20,13 @@
     yarn
     ```
 
-3.  **Correr el proyecto.**
+3.  **Configurar las variables de entorno local**
+
+    ```sh
+    cp .env.example .env
+    ```
+
+4.  **Correr el proyecto.**
 
     Iniciar el proyecto
 

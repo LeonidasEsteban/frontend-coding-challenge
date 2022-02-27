@@ -1,10 +1,9 @@
+import got from 'got'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import got from 'got'
+import endpoints from '@/config/endpoints'
 
-const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL
 const AUTH_JWT_SECRET = process.env.AUTH_JWT_SECRET
-const ENDPOINT = `api/auth/token`
 
 const providers = [
     CredentialsProvider({
@@ -17,12 +16,11 @@ const providers = [
                 }
 
                 const options = {
-                    prefixUrl: AUTH_SERVICE_URL,
                     json: payload,
                     responseType: 'json',
                 }
 
-                const response = await got.post(ENDPOINT, options)
+                const response = await got.post(endpoints.auth.login, options)
 
                 if (!response) {
                     throw new Error('Usuario y contraseña inválidos')
@@ -64,7 +62,7 @@ const options = {
     site: process.env.NEXTAUTH_URL,
     session: {
         jwt: false,
-        maxAge: 60 * 30, // 30 min
+        maxAge: 60 * 25, // 30 min
     },
     jwt: {
         secret: AUTH_JWT_SECRET,

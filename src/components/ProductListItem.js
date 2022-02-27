@@ -9,7 +9,7 @@ const ProductListItem = ({ product }) => {
             <div className="flex w-full justify-between gap-3">
                 <div className="flex gap-3">
                     <div className="flex-grow-0 flex-shrink-0">
-                        <Image src={product.imageUrl} width={80} height={80} title={product.name} />
+                        <Image src={product.imageUrl} width={80} height={80} alt={product.name} />
                     </div>
                     <div className="w-auto">
                         <div className="text-gray-800 text-sm">{product.name}</div>

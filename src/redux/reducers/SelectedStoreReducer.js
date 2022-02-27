@@ -1,4 +1,4 @@
-import { STORES } from '../types'
+import { STORES } from '../CONSTANTS'
 
 const INITIAL_STATE = {
     ui: {

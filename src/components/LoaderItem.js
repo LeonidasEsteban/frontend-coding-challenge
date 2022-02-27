@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 
-const Loader = ({ size = 80, label = 'Cargando...' }) => (
+const LoaderItem = ({ size = 80, label = 'Cargando...' }) => (
     <div className="loader h-full">
         <div className="grid place-content-center w-full h-48">
             <Image src="/loader.svg" alt="loading" title="Cargando" width={size} height={size} />
@@ -10,9 +10,9 @@ const Loader = ({ size = 80, label = 'Cargando...' }) => (
     </div>
 )
 
-Loader.propTypes = {
+LoaderItem.propTypes = {
     size: PropTypes.number,
     label: PropTypes.string,
 }
 
-export default Loader
+export default LoaderItem
