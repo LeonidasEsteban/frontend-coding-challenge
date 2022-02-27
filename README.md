@@ -6,7 +6,6 @@
 
 <img width="1173" alt="Captura de Pantalla 2022-02-27 a la(s) 14 37 21" src="https://user-images.githubusercontent.com/42586652/155899074-63ddc263-8f6d-4d3e-a9fe-1b4333c2dd56.png">
 
-
 ### Guía rápida
 
 1.  **Clonar el repositorio.**
@@ -18,7 +17,7 @@
 
 2.  **Instalar dependencias.**
 
-    Desde la **raiz** del repositorio:
+    Desde la **raíz** del repositorio:
 
     ```sh
     yarn
@@ -42,13 +41,13 @@
 
 ### Tecnologías
 
--   React - _Frontend Library_
+-   React - _Frontend library_
 -   Next.js - _Framework_
--   Ant Design - _Components Library_
+-   Ant Design - _Components library_
 -   TailwindCSS - _CSS utility class_
 -   Redux - _State manager_
 -   React-Query - _Fetch and cache data_
--   Vercel - _Deployment and Host_
+-   Vercel - _Deployment and host_
 
 ### License
 
