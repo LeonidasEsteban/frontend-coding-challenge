@@ -5,7 +5,7 @@ const CategoryName = ({ name, count = 0 }) => {
     return (
         <div className="flex gap-3">
             <div className="font-medium text-gray-600">{name}</div>
-            <Tag color="volcano" className="rounded-lg">
+            <Tag color="volcano" className="rounded">
                 {count}
             </Tag>
         </div>

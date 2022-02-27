@@ -4,6 +4,7 @@ import * as R from 'ramda'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { stringify } from 'query-string'
+import SimpleBarReact from 'simplebar-react'
 import ProductListItem from './ProductListItem'
 import CategoryName from './CategoryName'
 import Loader from './Loader'
@@ -51,28 +52,30 @@ const ProductsList = ({ user, selectedStore }) => {
 
     return (
         <div className="products-list" key="products">
-            {Object.keys(categories).map((category, index) => {
-                return (
-                    <Collapse
-                        accordion={true}
-                        key={index}
-                        className="rounded-md mb-3"
-                        accordion
-                        expandIconPosition="right"
-                    >
-                        <Panel
+            <SimpleBarReact className="pr-3" style={{ maxHeight: 'calc(100vh - 140px)' }}>
+                {Object.keys(categories).map((category, index) => {
+                    return (
+                        <Collapse
+                            accordion={true}
                             key={index}
-                            header={<CategoryName name={category} count={categories[category].length} />}
+                            className="rounded-md mb-3"
+                            accordion
+                            expandIconPosition="right"
                         >
-                            {categories[category].map((product) => (
-                                <div key={product.uuid} className="mb-5">
-                                    <ProductListItem product={product} />
-                                </div>
-                            ))}
-                        </Panel>
-                    </Collapse>
-                )
-            })}
+                            <Panel
+                                key={index}
+                                header={<CategoryName name={category} count={categories[category].length} />}
+                            >
+                                {categories[category].map((product) => (
+                                    <div key={product.uuid} className="mb-5">
+                                        <ProductListItem product={product} />
+                                    </div>
+                                ))}
+                            </Panel>
+                        </Collapse>
+                    )
+                })}
+            </SimpleBarReact>
         </div>
     )
 }

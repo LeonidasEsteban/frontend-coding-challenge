@@ -5,6 +5,7 @@ import configureStore from '@/redux/store/configureStore'
 import AppLayout from '@/components/AppLayout'
 
 import 'antd/dist/antd.css'
+import 'simplebar/src/simplebar.css'
 import '../styles/tailwind.css'
 
 import '../styles/globals.css'
