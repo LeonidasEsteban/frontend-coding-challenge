@@ -4,6 +4,9 @@
 
 > App para consulta de productos por categoría protegido por usuario y contraseña
 
+<img width="1173" alt="Captura de Pantalla 2022-02-27 a la(s) 14 37 21" src="https://user-images.githubusercontent.com/42586652/155899074-63ddc263-8f6d-4d3e-a9fe-1b4333c2dd56.png">
+
+
 ### Guía rápida
 
 1.  **Clonar el repositorio.**
