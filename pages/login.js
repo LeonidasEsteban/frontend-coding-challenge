@@ -96,7 +96,7 @@ export default function Login({ csrfToken }) {
                                     <div className="bg-red-parrot-500 flex flex-col items-center justify-center min-h-screen shadow-lg h-max py-2">
                                         <div className="bg-white shadow-md rounded px-16 py-24 mb-4 max-w-sm">
                                             <div className="logo mb-12 bg-white w-auto">
-                                                <img src="/parrot.svg" alt="Parrot connet" />
+                                                <img src="/parrot.svg" alt="Parrot connect" />
                                                 <p className="text-xs text-slate-900 px-0">
                                                     El software para los restaurantes de hoy
                                                 </p>

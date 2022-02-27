@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Frontend Coding Challenge Parrot Connect</h1>
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 
-## Getting Started
+> Consulta de productos por categoría con login - [frontend-coding-challenge.vercel.app](https://frontend-coding-challenge.vercel.app)
 
-First, run the development server:
+### Guía rápida
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1.  **Clonar el repositorio.**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```sh
+    git clone git@github.com:danielpro5/frontend-coding-challenge.git
+    cd frontend-coding-challenge
+    ```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+2.  **Instalar dependencias.**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+    Desde la **raiz** del repositorio:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+    ```sh
+    yarn
+    ```
 
-## Learn More
+3.  **Correr el proyecto.**
 
-To learn more about Next.js, take a look at the following resources:
+    Iniciar el proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```sh
+    yarn start
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    El sitio estará disponible en http://localhost:3000
 
-## Deploy on Vercel
+### Tecnologías
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   React - _Frontend Library_
+-   Next.js - _Framework_
+-   Ant Design - _Components Library_
+-   TailwindCSS - _CSS utility class_
+-   Redux - _State manager_
+-   React-Query - _Fetch and cache data_
+-   Vercel - _Deployment and Host_
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### License
+
+MIT &copy; Daniel P. Atanacio
