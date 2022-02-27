@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     error: null,
 }
 
-const AuthReducer = (state = INITIAL_STATE, action) => {
+const StoresReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case STORES.FETCH_START: {
             return {
@@ -36,10 +36,9 @@ const AuthReducer = (state = INITIAL_STATE, action) => {
                 error: action.error,
             }
         }
-
         default:
             return state
     }
 }
 
-export default AuthReducer
+export default StoresReducer

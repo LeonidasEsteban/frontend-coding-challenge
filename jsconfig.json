@@ -4,7 +4,10 @@
         "paths": {
             "@/redux/*": ["redux/*"],
             "@/components/*": ["components/*"]
-        }
+        },
+        "sourceMap": false,
+        "target": "es5",
+         "esModuleInterop": true,
     },
     "include": [],
     "exclude": ["node_modules"],

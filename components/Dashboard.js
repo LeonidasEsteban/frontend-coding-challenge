@@ -1,22 +1,23 @@
-import { Button } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
-import { testAction } from '../redux/actions/actions'
+import { useSelector } from 'react-redux'
+import { get } from 'lodash'
+import { Empty } from 'antd'
 
-const Dashboard = () => {
-    const auth = useSelector((state) => state.auth)
-    const dispatch = useDispatch()
+import ProductsList from './ProductsList'
 
-    const handleClick = () => {
-        dispatch(testAction())
+const Dashboard = ({ session }) => {
+    const selectedStore = useSelector((state) => get(state, 'selectedStore.data', null))
+
+    if (!selectedStore) {
+        return (
+            <div className="h-full grid place-content-center">
+                <Empty description="Seleccione una tienda por favor" />
+            </div>
+        )
     }
 
     return (
-        <div className="dashboard">
-            <h1>Dashboard</h1>
-            <div>Access: {auth.access}</div>
-            <Button type="primary" onClick={handleClick}>
-                Test
-            </Button>
+        <div className="p-4">
+            <ProductsList user={session.user} selectedStore={selectedStore} />
         </div>
     )
 }

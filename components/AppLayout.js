@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Layout } from 'antd'
 import UserItem from '@/components/UserItem'
-import StoreItem from './StoreItem'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { getMyStores } from '../redux/actions/actions'
+import StoreItem from '@/components/StoreItem'
+import { getMyStores } from '@/redux/actions/actions'
 
 const { Header, Content, Footer } = Layout
 
@@ -26,9 +26,7 @@ const AppLayout = ({ session, children }) => {
                 </div>
                 <UserItem session={session} stores={stores} />
             </Header>
-            <Content className="p4 h-screen">
-                <div className="site-layout-background">{children}</div>
-            </Content>
+            <Content className="site-layout-background">{children}</Content>
             <Footer style={{ textAlign: 'center' }}>Parrot ©2022</Footer>
         </Layout>
     )

@@ -11,12 +11,19 @@ export const setAuthData = (data) => (dispatch) => {
     })
 }
 
+export const setSelectedStore = (uuid) => (dispatch) => {
+    dispatch({
+        type: STORES.SET_SELECTED_STORE,
+        payload: uuid,
+    })
+}
+
 export const getMyStores = () => async (dispatch, getState) => {
     const state = getState()
     const { access } = state.auth.data
     try {
         dispatch({ type: STORES.FETCH_START })
-        
+
         const { data } = await axios.get(`${SERVICE_URL}/${ENDPOINT}`, {
             headers: {
                 authorization: 'Bearer ' + access,

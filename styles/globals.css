@@ -20,3 +20,7 @@ a {
     margin: 0 auto;
     width: 300px;
 }
+
+.site-layout-background {
+    height: calc(100vh - 140px);
+}

@@ -35,11 +35,11 @@ export default function Welcome() {
     }, [session])
 
     return (
-        <div className="container">
+        <>
             <Head>
                 <title>Dashboard</title>
             </Head>
             <Dashboard session={session} />
-        </div>
+        </>
     )
 }

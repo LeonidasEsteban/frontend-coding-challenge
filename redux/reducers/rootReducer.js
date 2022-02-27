@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import AuthReducer from './AuthReducer'
-import StoreReducer from './StoreReducer'
+import SelectedStoreReducer from './SelectedStoreReducer'
+import StoresReducer from './StoresReducer'
 
 const reducers = combineReducers({
     auth: AuthReducer,
-    stores: StoreReducer,
+    stores: StoresReducer,
+    selectedStore: SelectedStoreReducer,
 })
 
 export default reducers
