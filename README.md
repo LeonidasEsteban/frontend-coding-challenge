@@ -26,12 +26,17 @@
 
 3. **Generar una llave para next auth**
 
+   Dentro del shell ejecutar el comando openssl
+
     ```sh
     openssl rand -base64 32
     ```
+   
    Copiar la llave generada en la variable AUTH_JWT_SECRET del archivo menu/.env
 
+
 4. **Instalar dependencias.**
+
     Dentro de la raíz del proyecto ejecutar el comando yarn
 
     ```sh
