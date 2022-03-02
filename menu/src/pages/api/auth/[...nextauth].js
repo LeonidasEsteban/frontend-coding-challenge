@@ -66,6 +66,7 @@ const options = {
     },
     jwt: {
         secret: AUTH_JWT_SECRET,
+        encryption: false,
     },
     providers,
     callbacks,

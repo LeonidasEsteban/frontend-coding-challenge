@@ -27,7 +27,7 @@ const AppLayout = ({ session, children }) => {
                 <UserItem session={session} stores={stores} />
             </Header>
             <Content className="site-layout-background">{children}</Content>
-            <Footer className="flex justify-center text-xs">© danielpro5 {new Date().getFullYear()}</Footer>
+            <Footer className="flex justify-center text-xs">© danielpro5 - {new Date().getFullYear()}</Footer>
         </Layout>
     )
 }

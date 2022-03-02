@@ -12,13 +12,13 @@ const ProductListItem = ({ product }) => {
                         <Image src={product.imageUrl} width={80} height={80} alt={product.name} />
                     </div>
                     <div className="w-auto">
-                        <div className="text-gray-800 text-sm">{product.name}</div>
-                        <div className="text-gray-700 text-xs">MXN{product.price}</div>
+                        <div className="text-gray-800 text-sm font-medium">{product.name}</div>
+                        <div className="text-gray-700 text-xs">MXN {product.price}</div>
                         <div className="text-gray-500 text-xs mt-2">${product.description}</div>
                     </div>
                 </div>
                 <div className="availability">
-                    <Tooltip title="Producto disponible">
+                    <Tooltip title="Status">
                         <Switch
                             className={isAvailable ? 'bg-red-parrot-500' : 'bg-gray-400'}
                             defaultChecked={isAvailable}

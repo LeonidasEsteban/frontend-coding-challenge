@@ -1,4 +1,4 @@
-# Frontend Coding Challenge Parrot Connect
+# Frontend Coding Challenge
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/organization/repository)
 
@@ -8,32 +8,40 @@
 
 ### Guía rápida
 
-1.  **Clonar el repositorio.**
+1. **Clonar el repositorio.**
 
     ```sh
     git clone git@github.com:danielpro5/frontend-coding-challenge.git
     cd frontend-coding-challenge
     ```
+   
+2. **Configurar las variables de entorno local**
+   
+   Dentro del workspace menu ejecutar el comando copy
+   
+    ```sh
+    cd menu
+    cp .env.example .env
+    ```
 
-2.  **Instalar dependencias.**
+3. **Generar una llave para next auth**
 
-    Desde la **raíz** del repositorio:
+    ```sh
+    openssl rand -base64 32
+    ```
+   Copiar la llave generada en la variable AUTH_JWT_SECRET del archivo menu/.env
+
+4. **Instalar dependencias.**
+    Dentro de la raíz del proyecto ejecutar el comando yarn
 
     ```sh
     yarn
     ```
 
-3.  **Configurar las variables de entorno local**
+5. **Construir y correr el proyecto.**
 
     ```sh
-    cp .env.example .env
-    ```
-
-4.  **Correr el proyecto.**
-
-    Iniciar el proyecto
-
-    ```sh
+    yarn build
     yarn start
     ```
 
